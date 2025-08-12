@@ -1,0 +1,31 @@
+name: CI - NUnit Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x' # Change to your target version
+
+      - name: Restore dependencies
+        run: dotnet restore Calculator.sln
+
+      - name: Build solution
+        run: dotnet build Calculator.sln --configuration Release --no-restore
+
+      - name: Run NUnit tests
+        run: dotnet test UnitTest/UnitTest.csproj --configuration Release --no-build --logger "trx;LogFileName=test_results.trx"
