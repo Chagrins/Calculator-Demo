@@ -42,6 +42,6 @@ public class Tests
     [Test]
     public void AdditionFailureTest()
     {
-        Assert.That(50 == Calculator.Add(40, 5), Is.True);
+        Assert.That(50 == Calculator.Add(40, 5), Is.False);
     }
 }
