@@ -38,4 +38,10 @@ public class Tests
     {
         Assert.Throws<DivideByZeroException>(() => Calculator.Divide(99, 0));
     }
+    
+    [Test]
+    public void AdditionFailureTest()
+    {
+        Assert.That(50 == Calculator.Add(40, 5), Is.True);
+    }
 }
